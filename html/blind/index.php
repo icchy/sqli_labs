@@ -1,7 +1,7 @@
 <?php
 require_once '../config.php';
 
-int_set('error_log', 0);
+ini_set('error_log', 0);
 
 $db = new PDO($DB_URI);
 $method = $_SERVER['REQUEST_METHOD'];   
