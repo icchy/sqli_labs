@@ -1,0 +1,30 @@
+<?php
+require_once '../config.php';
+
+int_set('error_log', 0);
+
+$db = new PDO($DB_URI);
+$method = $_SERVER['REQUEST_METHOD'];   
+
+if ($method === 'POST') {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $sql = "SELECT * FROM users WHERE username='${username}' AND password='${password}'";
+    foreach ($db->query($sql) as $row) {
+        echo "successfully logged in" . PHP_EOL;
+    }
+}
+?>
+<!doctype html>
+<html>
+<head>
+<title>Login</title>
+</head>
+<body>
+<form method='post'>
+    <input name="username" type="plaintext" />
+    <input name="password" type="password" />
+    <button type="submit">Login</button>
+</form>
+</body>
+</html>
